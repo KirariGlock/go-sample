@@ -1,0 +1,15 @@
+version: '3'
+services:
+  #  mysql -u testuser -ptestuser -D sample -h 127.0.0.1 で接続可能(MySQLクライアントは別途入れる必要あり。)
+  mysql:
+    build: ./sampledb
+    volumes:
+      - ./sampledb/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sample
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testuser
+      MYSQL_HOST: ""
+    ports:
+      - "3306:3306"
